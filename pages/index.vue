@@ -1,12 +1,12 @@
 <template>
   <div class="container">
-    <div class="card">
+    <div class="card todolist__container-card">
       <create-list 
         @onClick="addTodoList"
         v-model="inputTitle"
       ></create-list>
       <div :class="{'todolist__container-todolist': isListAvailabled === true}">
-        <div align="center" v-for="list in lists" :key="list.key">
+        <div align="center" v-for="list in lists.slice().reverse()" :key="list.index">
           <todolist-card 
             v-show="list !== ''"
             :todo-title="list"
@@ -45,6 +45,9 @@ export default {
 
 <style>
 .todolist__container-todolist {
-  padding-bottom: 1rem;
+  padding-bottom: 1px;
+}
+.todolist__container-card {
+  background-color: #dfe3e6;
 }
 </style>

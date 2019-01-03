@@ -17,8 +17,8 @@ export default {
 <style>
 .todolist__card-list {
     padding-bottom: 0;
-    margin-bottom: 1rem;
-    width: 22rem;
+    margin-bottom: 0.5rem;
+    width: 24rem;
 
 }
 </style>

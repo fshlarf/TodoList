@@ -53,24 +53,26 @@ export default {
 <style>
 .todolist__card-title {
     padding: 15px;
-    padding-left: 25px;
+    padding-left: 18px;
     padding-bottom: 0px;
 }
 .todolist__btn-add {
     cursor: pointer;
     padding: 15px;
-    padding-left: 25px;
+    padding-left: 18px;
 }
 .todolist__btn-add:hover {
-    background-color: rgba(231, 231, 231, 0.782);
+    background-color: #9facb3a5;
 }
 .todolist__btn-add:active {
-    background-color: rgba(231, 231, 231, 0.782);
+    background-color: #9facb3a5;
 }
 .card-body {
     padding-top: 10px;
 }
 .todolist__card-create {
     border-color: transparent;
+  background-color: #dfe3e6;
+
 }
 </style>
