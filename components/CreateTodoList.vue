@@ -5,7 +5,7 @@
         <div class="card-body" v-show="isAdded === true">
             <form>
                 <div class="form-group">
-                    <input class="form-control" placeholder="Apa yang kamu kerjakan hari ini..." v-model="content" @input="handleInput">
+                    <input type="text" class="form-control" placeholder="Apa yang kamu kerjakan hari ini..." v-model="content" @input="handleInput">
                 </div>
                 <input type="submit" class="btn btn-primary" @click.prevent="onClick">
             </form>

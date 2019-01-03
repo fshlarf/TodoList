@@ -19,6 +19,5 @@ export default {
     padding-bottom: 0;
     margin-bottom: 0.5rem;
     width: 24rem;
-
 }
 </style>
