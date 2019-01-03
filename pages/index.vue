@@ -3,13 +3,14 @@
     <div class="card todolist__container-card">
       <create-list 
         @onClick="addTodoList"
-        v-model="inputTitle"
+        v-model="newList"
       ></create-list>
       <div :class="{'todolist__container-todolist': isListAvailabled === true}">
         <div align="center" v-for="list in lists.slice().reverse()" :key="list.index">
           <todolist-card 
             v-show="list !== ''"
             :todo-title="list"
+            @onClick="deleteList"
           ></todolist-card>
         </div>
       </div>
@@ -24,8 +25,9 @@ import CreateTodoList from '~/components/CreateTodoList.vue'
 export default {
   data() {
     return {
-      inputTitle: '',
+      // inputTitle: '',
       lists: [],
+      newList: null,
       isListAvailabled: false
     }
   },
@@ -33,11 +35,34 @@ export default {
     todolistCard: CardList,
     createList: CreateTodoList
   },
+  mounted() {
+    if (localStorage.getItem('lists')) {
+      try {
+        this.lists = JSON.parse(localStorage.getItem('lists'));
+      } catch(e) {
+        localStorage.removeItem('lists');
+      }
+    }
+  },
   methods: {
-    addTodoList(inputTitle) {
-      const newListTitle = this.inputTitle
-      this.lists.push(newListTitle)
-      this.isListAvailabled = true
+    addTodoList() {
+      if(!this.newList) {
+        return
+      }
+
+      this.lists.push(this.newList)
+      this.newList = ''
+      this.saveLists()
+      console.log(this.lists)
+    },
+    saveLists() {
+      const parsed = JSON.stringify(this.lists)
+      localStorage.setItem('lists', parsed)
+    },
+    deleteList (x) {
+      this.lists.splice(x, 1)
+      this.saveLists()
+      console.log(this.lists)
     }
   }
 }
