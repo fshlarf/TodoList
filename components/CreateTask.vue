@@ -1,7 +1,10 @@
 <template>
     <div align="left" class="card todolist__card-create" style="width: 25rem;">
         <h5 class="todolist__card-title">Todo List</h5>
-        <div class="todolist__btn-add" :style="hideBtnAdd" @click="showForm"> <b>+</b> Add Todo List</div>
+        <div class="todolist__btn-add" :style="hideBtnAdd" @click="showForm">
+            <i class="icon ion-md-add-circle-outline"></i>
+            <label class="todolist__label-create">Add Todo List</label>
+        </div>
         <div class="card-body" v-show="isAdded === true">
             <form>
                 <div class="form-group">
@@ -67,7 +70,7 @@ export default {
 .todolist__btn-add {
     cursor: pointer;
     padding: 15px;
-    padding-left: 18px;
+    padding-left: 20px;
     color: dodgerblue
 }
 .todolist__btn-add:hover {
@@ -83,5 +86,11 @@ export default {
     border-color: transparent;
   background-color: #dfe3e6;
 
+}
+.ion-md-add-circle-outline {
+    font-size: 20px;
+}
+.todolist__label-create {
+    vertical-align: middle
 }
 </style>

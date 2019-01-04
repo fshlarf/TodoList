@@ -19,6 +19,8 @@
             :show-form="task.editable === true"
             :show-btnsubmit="task.editable === true"
             :show-btnedit="task.editable === false"
+            v-bind:status="task.statusList"
+            @addStatus="changeStatus(task, index)"
           ></card-task>
         </div>
       </div>
@@ -37,7 +39,8 @@ export default {
       newTask: null,
       categoryTask: null,
       isListAvailabled: false,
-      updateTask: ''
+      updateTask: '',
+      statusTask: ''
     }
   },
   components: {
@@ -60,20 +63,18 @@ export default {
       }
       this.tasks.push({
         title: this.newTask, 
-        statusList: true,
+        statusList: 'false',
         id: this.tasks.length,
         editable: false,
       })
       this.newTask = null
       this.saveTasks()
-      console.log(this.tasks)
     },
     saveTasks () {
       const parsed = JSON.stringify(this.tasks)
       localStorage.setItem('tasks', parsed)
     },
     deleteList (task, index) {
-      console.log(this.tasks.indexOf(task))
       this.tasks.splice(this.tasks.indexOf(task), 1)
       this.saveTasks()
     },
@@ -83,7 +84,6 @@ export default {
       } else {
         task.title = this.updateTask
         this.updateTask = ''
-        console.log(this.tasks)
         this.saveTasks()
         task.editable = false
       }
@@ -91,7 +91,15 @@ export default {
     showFormEdit(task, index) {
       // this.updateTask = task.title
       task.editable = true
-      console.log(this.updateTask)
+    },
+    changeStatus(task, index) {
+      if(task.statusList == 'true') {
+        task.statusList = 'false'
+      } else if(task.statusList == 'false') {
+        task.statusList = 'true'
+      }
+      // task.statusList = this.statusTask
+      this.saveTasks()
     }
   }
 }

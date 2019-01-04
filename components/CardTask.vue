@@ -3,7 +3,11 @@
         <div class="card-body todolist__card-list">
             <h5 class="card-title" >{{ todoTitle }}</h5>
             <input type="text" class="form-control" @input="handleInput" v-model="content" :placeholder="placeHolder" v-show="showForm">
-            <input type="checkbox" :value="status" @input="addStatus($event.target.value)">
+            <div>
+                <!-- <img src="../assets/icon/done-all/1x/done-all.png" alt="icon not found" :value="status" @click="addStatus"> -->
+                <i class="icon ion-md-checkmark-circle-outline" v-bind:class="status === 'true' ? 'status-done' : ''" :value="status" @click="addStatus"></i>
+                <label class="todolist__label" v-show="status === 'true'"><b><i>Done</i></b></label>
+            </div>
             <div class="todolist__btn-delete" @click="onClickDelete">delete</div>
             <div class="todolist__btn-edit" @click="onClickSubmitEdit" v-show="showBtnsubmit">submit</div>
             <div class="todolist__btn-edit" @click="onClickEdit" v-show="showBtnedit">edit</div>
@@ -21,7 +25,7 @@ export default {
         showForm: Boolean,
         showBtnsubmit: Boolean,
         showBtnedit: Boolean,
-        status: Boolean
+        status: String
     },
     data() {
         return {
@@ -31,10 +35,10 @@ export default {
         }
     },
     methods: {
-        onClickDelete () {
+        onClickDelete() {
             this.$emit('onClickDelete')
         },
-        onClickSubmitEdit () {
+        onClickSubmitEdit() {
             this.$emit('onClickSubmitEdit')
         },
         onClickEdit () {
@@ -43,8 +47,8 @@ export default {
         handleInput(e) {
             this.$emit('input', this.content)
         },
-        addStatus(status) {
-            this.$emit('input', status)
+        addStatus() {
+            this.$emit('addStatus')
         }
     }
 }
@@ -71,51 +75,41 @@ export default {
 .todolist__btn-edit:hover {
     color: dodgerblue;
 }
-
-
-/* Base for label styling
+.todolist__label {
+    font-size: 14px;
+    vertical-align: middle;
+    color:green;
+}
 [type="checkbox"]:not(:checked),
 [type="checkbox"]:checked {
-  position: absolute;
-  left: -9999px;
+    left: -9999px;
+    cursor: pointer;
+    left: 0; top: 0;
+    width: 1.25em; height: 1.25em;
+    border: 2px solid #ccc;
+    background:white;
+    border-radius: 4px;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
 }
-[type="checkbox"]:not(:checked) + label,
-[type="checkbox"]:checked + label {
-  position: relative;
-  padding-left: 1.95em;
-  cursor: pointer;
+.ion-md-checkmark-circle-outline {
+    color: #ccc;
+    font-size: 24px;
+    cursor: pointer;
 }
-
-[type="checkbox"]:not(:checked) + label:before,
-[type="checkbox"]:checked + label:before {
-  content: '';
-  position: absolute;
-  left: 0; top: 0;
-  width: 1.25em; height: 1.25em;
-  border: 2px solid #ccc;
-  background: #fff;
-  border-radius: 4px;
-  box-shadow: inset 0 1px 3px rgba(0,0,0,.1);
+.ion-md-checkmark-circle-outline:hover {
+    color: #bbb;
+    font-size: 26px;
+    cursor: pointer;
 }
-[type="checkbox"]:not(:checked) + label:after,
-[type="checkbox"]:checked + label:after {
-  content: '\2713\0020';
-  position: absolute;
-  top: .15em; left: .22em;
-  font-size: 1.3em;
-  line-height: 0.8;
-  color: #09ad7e;
-  transition: all .2s;
-  font-family: 'Lucida Sans Unicode', 'Arial Unicode MS', Arial;
+.status-done {
+    color: green;
+    font-size: 26px;
+    cursor: pointer;
 }
-[type="checkbox"]:not(:checked) + label:after {
-  opacity: 0;
-  transform: scale(0);
+.status-done:hover {
+    color: green;
+    font-size: 26px;
+    cursor: pointer;
 }
-[type="checkbox"]:checked + label:after {
-  opacity: 1;
-  transform: scale(1);
-} */
-
 
 </style>
