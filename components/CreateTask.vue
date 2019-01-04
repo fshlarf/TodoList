@@ -1,11 +1,16 @@
 <template>
     <div align="left" class="card todolist__card-create" style="width: 25rem;">
         <h5 class="todolist__card-title">Todo List</h5>
-        <div class="todolist__btn-add" :style="hideBtnAdd" @click="showForm"> + Add Todo List</div>
+        <div class="todolist__btn-add" :style="hideBtnAdd" @click="showForm"> <b>+</b> Add Todo List</div>
         <div class="card-body" v-show="isAdded === true">
             <form>
                 <div class="form-group">
-                    <input type="text" class="form-control" placeholder="Apa yang kamu kerjakan hari ini..." v-model="content" @input="handleInput">
+                    <input type="text"
+                        class="form-control"
+                        placeholder="Apa yang kamu kerjakan hari ini..."
+                        :value="title"
+                        @input="addTitle($event.target.value)"
+                    >
                 </div>
                 <input type="submit" class="btn btn-primary" @click.prevent="onClick">
             </form>
@@ -16,12 +21,12 @@
 <script>
 export default {
     props: {
-        listTitle: String,
+        title: String
     },
     data() {
         return {
             isAdded: false,
-            content: this.listTitle
+            taskTitle: this.title
         }
     },
     computed: {
@@ -34,17 +39,20 @@ export default {
             this.isAdded = true
             this.btnAdd = false
         } ,
-        handleInput(e) {
-            this.$emit('input', this.content)
+        inputTitle(taskTitle) {
+            this.$emit('input', taskTitle)
         },
         onClick() {
-            if(this.content === '') {
+            if(!this.contentTitle === '') {
                 return false
             } else {
                 this.$emit('onClick')
                 this.isAdded = false
-                this.content = ''   
+                this.taskTitle = ''   
             }
+        },
+        addTitle(title) {
+            this.$emit('input', title);
         }
     }
 }
@@ -60,6 +68,7 @@ export default {
     cursor: pointer;
     padding: 15px;
     padding-left: 18px;
+    color: dodgerblue
 }
 .todolist__btn-add:hover {
     background-color: #9facb3a5;

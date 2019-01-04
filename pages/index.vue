@@ -1,17 +1,25 @@
 <template>
   <div class="container">
     <div class="card todolist__container-card">
-      <create-list 
+      <create-task 
         @onClick="addTodoList"
-        v-model="newList"
-      ></create-list>
+        v-bind:title="newTask"
+        v-on:input="newTask = arguments[0]"
+      ></create-task>
       <div :class="{'todolist__container-todolist': isListAvailabled === true}">
-        <div align="center" v-for="list in lists.slice().reverse()" :key="list.index">
-          <todolist-card 
-            v-show="list !== ''"
-            :todo-title="list"
-            @onClick="deleteList"
-          ></todolist-card>
+        <div align="center" v-for="(task, index) in tasks.slice().reverse()" :key="index">
+          <card-task 
+            v-show="task !== ''"
+            :todo-title="task.title"
+            @onClickDelete="deleteList(task,index)"
+            @onClickSubmitEdit="submitEdit(task,index)"
+            @onClickEdit="showFormEdit(task, index)"
+            v-model="updateTask"
+            :place-holder="task.title"
+            :show-form="task.editable === true"
+            :show-btnsubmit="task.editable === true"
+            :show-btnedit="task.editable === false"
+          ></card-task>
         </div>
       </div>
     </div>
@@ -19,50 +27,71 @@
 </template>
 
 <script>
-import CardList from '~/components/CardList.vue'
-import CreateTodoList from '~/components/CreateTodoList.vue'
+import CardTask from '~/components/CardTask.vue'
+import CreateTask from '~/components/CreateTask.vue'
 
 export default {
   data() {
     return {
-      // inputTitle: '',
-      lists: [],
-      newList: null,
-      isListAvailabled: false
+      tasks: [],
+      newTask: null,
+      categoryTask: null,
+      isListAvailabled: false,
+      updateTask: ''
     }
   },
   components: {
-    todolistCard: CardList,
-    createList: CreateTodoList
+    cardTask: CardTask,
+    createTask: CreateTask
   },
   mounted() {
-    if (localStorage.getItem('lists')) {
+    if (localStorage.getItem('tasks')) {
       try {
-        this.lists = JSON.parse(localStorage.getItem('lists'));
+        this.tasks = JSON.parse(localStorage.getItem('tasks'));
       } catch(e) {
-        localStorage.removeItem('lists');
+        localStorage.removeItem('tasks');
       }
     }
   },
   methods: {
-    addTodoList() {
-      if(!this.newList) {
+    addTodoList () {
+      if(!this.newTask) {
         return
       }
-
-      this.lists.push(this.newList)
-      this.newList = ''
-      this.saveLists()
-      console.log(this.lists)
+      this.tasks.push({
+        title: this.newTask, 
+        statusList: true,
+        id: this.tasks.length,
+        editable: false,
+      })
+      this.newTask = null
+      this.saveTasks()
+      console.log(this.tasks)
     },
-    saveLists() {
-      const parsed = JSON.stringify(this.lists)
-      localStorage.setItem('lists', parsed)
+    saveTasks () {
+      const parsed = JSON.stringify(this.tasks)
+      localStorage.setItem('tasks', parsed)
     },
-    deleteList (x) {
-      this.lists.splice(x, 1)
-      this.saveLists()
-      console.log(this.lists)
+    deleteList (task, index) {
+      console.log(this.tasks.indexOf(task))
+      this.tasks.splice(this.tasks.indexOf(task), 1)
+      this.saveTasks()
+    },
+    submitEdit (task, index) {
+      if (this.updateTask === '') {
+        return false
+      } else {
+        task.title = this.updateTask
+        this.updateTask = ''
+        console.log(this.tasks)
+        this.saveTasks()
+        task.editable = false
+      }
+    },
+    showFormEdit(task, index) {
+      // this.updateTask = task.title
+      task.editable = true
+      console.log(this.updateTask)
     }
   }
 }
