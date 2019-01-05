@@ -9,20 +9,20 @@
         @inputCategory="newCategory = arguments[0]"
 
       ></create-task>
-      <div :class="{'todolist__container-todolist': isListAvailabled === true}">
+      <div :class="{'todolist__container-todolist': isListAvailabled === true}" >
         <drop-down
           @onClickAll="filterByStatus(tasks, 'all')"
           @onClickDone="filterByStatus(tasks, 'true')"
           @onClickNotdone="filterByStatus(tasks, 'false')"
         ></drop-down>
-        <div 
+        <div
+          class="todolist__task-container"
           align="center" 
-          v-for="(task, index) in tasks.slice().reverse()" 
-          :key="index"
+          v-for="(task, i) in tasks" 
+          :key="i"
           draggable="true" 
           @dragstart="dragStart(i, $event)" 
-          @dragover.prevent 
-          @dragenter="dragEnter" 
+          @dragover.prevent @dragenter="dragEnter" 
           @dragleave="dragLeave" 
           @dragend="dragEnd" 
           @drop="dragFinish(i, $event)"
@@ -31,17 +31,17 @@
             v-show="task.statusTask "
             :task-title="task.title"
             :task-category="task.category"
-            @onClickDelete="deleteTask(task,index)"
-            @onClickSubmitEdit="submitEdit(task,index)"
-            @onClickEdit="showFormEdit(task, index)"
+            @onClickDelete="deleteTask(task,i)"
+            @onClickSubmitEdit="submitEdit(task,i)"
+            @onClickEdit="showFormEdit(task, i)"
             v-model="updateTask"
-            @keyupEnter="submitEdit(task,index)"
+            @keyupEnter="submitEdit(task,i)"
             :place-holder="task.title"
             :show-form="task.editable === true"
             :show-btnsubmit="task.editable === true"
             :show-btnedit="task.editable === false"
             v-bind:status="task.statusTask"
-            @addStatus="changeStatus(task, index)"
+            @addStatus="changeStatus(task, i)"
           ></card-task>
         </div>
       </div>
@@ -115,11 +115,11 @@ export default {
       const parsed = JSON.stringify(this.tasksAll)
       localStorage.setItem('tasks', parsed)
     },
-    deleteTask (task, index) {
+    deleteTask (task, i) {
       this.tasks.splice(this.tasks.indexOf(task), 1)
       this.saveTasks()
     },
-    submitEdit (task, index) {
+    submitEdit (task, i) {
       if (this.updateTask === '') {
         task.editable = false
       } else {
@@ -129,10 +129,10 @@ export default {
         task.editable = false
       }
     },
-    showFormEdit(task, index) {
+    showFormEdit(task, i) {
       task.editable = true
     },
-    changeStatus(task, index) {
+    changeStatus(task, i) {
       if (task.statusTask == 'true') {
         task.statusTask = 'false'
       } else if (task.statusTask == 'false') {
@@ -147,6 +147,7 @@ export default {
           this.$nuxt.$loading.finish()
         }, 1000)
     },
+
     dragStart(which, ev) {
       ev.dataTransfer.setData('Text', this.id);
       ev.dataTransfer.dropEffect = 'move'
@@ -179,7 +180,7 @@ export default {
       if (to === -1) {
         this.removeItemAt(from);
       } else {
-        this.todos.splice(to, 0, this.todos.splice(from, 1)[0]);
+        this.tasks.splice(to, 0, this.tasks.splice(from, 1)[0]);
       }
     }
   }
@@ -195,5 +196,7 @@ export default {
   padding-left: 5px;
   padding-right: 5px; 
 }
-
+.todolist__task-container {
+  cursor: grab
+}
 </style>
