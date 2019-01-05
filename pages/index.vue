@@ -18,7 +18,7 @@
         <div
           class="todolist__task-container"
           align="center" 
-          v-for="(task, i) in tasks.slice().reverse()" 
+          v-for="(task, i) in tasks" 
           :key="i"
           draggable="true" 
           @dragstart="dragStart(i, $event)" 
@@ -98,7 +98,7 @@ export default {
         id: this.tasks.length,
         editable: false,
       })
-      this.tasks = this.tasksAll
+      this.tasks = this.tasksAll.slice().reverse()
       this.newTask = ''
       this.newCategory = ''
       this.saveTasks()
@@ -139,13 +139,11 @@ export default {
           this.$nuxt.$loading.finish()
         }, 1000)
     },
-
     dragStart(which, ev) {
       ev.dataTransfer.setData('Text', this.id);
       ev.dataTransfer.dropEffect = 'move'
       this.dragging = which;
     },
-  
     dragEnd(ev) {
       this.dragging = -1
     },
@@ -153,6 +151,7 @@ export default {
       this.moveItem(this.dragging, to);
       ev.target.style.marginTop = '2px'
       ev.target.style.marginBottom = '2px'
+      this.saveTasks()
     },
     moveItem(from, to) {
       if (to === -1) {
