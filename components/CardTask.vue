@@ -3,7 +3,7 @@
         <div class="card-body todolist__card-list">
             <h5 class="card-title" >{{ taskTitle }}</h5>
             <p class="todolist__category">{{ taskCategory }}</p>
-            <input type="text" class="form-control" @input="handleInput" v-model="content" :placeholder="placeHolder" v-show="showForm">
+            <input type="text" class="form-control" @input="handleInput" v-model="content" @keyup.enter="keyupEnter" :placeholder="placeHolder" v-show="showForm">
             <div>
                 <i class="icon ion-md-checkmark-circle-outline" v-bind:class="status === 'true' ? 'status-done' : ''" :value="status" @click="addStatus"></i>
                 <label class="todolist__label" v-show="status === 'true'"><b><i>Done</i></b></label>
@@ -49,6 +49,9 @@ export default {
         },
         addStatus() {
             this.$emit('addStatus')
+        },
+        keyupEnter() {
+            this.$emit('keyupEnter')
         }
     }
 }
