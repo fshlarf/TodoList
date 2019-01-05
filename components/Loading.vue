@@ -29,10 +29,10 @@ export default {
 <style>
 .loading-page {
     position: absolute;
-    background-color: white;
+    background-color: rgba(81, 81, 81, 0.666);
     width: 100%;
     z-index: 999;
-    padding-bottom: 300px;
+    padding-bottom: 700px;
     padding-top: 300px;
 }
 

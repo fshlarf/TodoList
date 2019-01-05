@@ -43,6 +43,7 @@ import CreateTask from '~/components/CreateTask.vue'
 import DropDown from '~/components/DropDown.vue'
 
 export default {
+  loading: false,
   asyncData() {
     return new Promise((resolve) => {
       setTimeout(function () {
@@ -123,7 +124,11 @@ export default {
       this.saveTasks()
     },
     filterByStatus(tasks, status) {
-      this.tasks = status == 'all' ? this.tasksAll : this.tasksAll.filter(e => e.statusTask == status);
+      this.$nuxt.$loading.start()
+        setTimeout(() => {
+          this.tasks = status == 'all' ? this.tasksAll : this.tasksAll.filter(e => e.statusTask == status);
+          this.$nuxt.$loading.finish()
+        }, 1000)
     }
   }
 }

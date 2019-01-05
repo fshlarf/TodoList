@@ -1,7 +1,6 @@
 <template>
     <div align="left" class="card todolist__card-create">
         <h5 class="todolist__card-title">Todo List</h5>
-        <Nuxt-link to="/home">Test Animasi</Nuxt-link>
         <div class="todolist__btn-add" :style="hideBtnAdd" @click="showForm">
             <i class="icon ion-md-add-circle-outline"></i>
             <label class="todolist__label-create">Add Todo List</label>
@@ -93,12 +92,7 @@ export default {
 .card-body {
     padding-top: 10px;
 }
-.todolist__card-create {
-    border-color: transparent;
-    background-color: #dfe3e6;
-    width: auto;
 
-}
 .ion-md-add-circle-outline {
     font-size: 20px;
 }
@@ -108,16 +102,20 @@ export default {
 .form-control .category {
     background-color: transparent
 }
+.todolist__card-create {
+    border-color: transparent;
+    background-color: #dfe3e6;
+    width: auto;
+}
 @media (max-width: 350px) {
-  
     .todolist__card-create {
-        width: auto
+        width: 20rem
     }
    
 }
 @media (max-width: 800px) {
     .todolist__card-create {
-        width: auto
+        width: 20rem
     }
 }
 

@@ -8,7 +8,6 @@
                 <i class="icon ion-md-checkmark-circle-outline" v-bind:class="status === 'true' ? 'status-done' : ''" :value="status" @click="addStatus"></i>
                 <label class="todolist__label" v-show="status === 'true'"><b><i>Done</i></b></label>
             </div>
-
             <div class="todolist__btn-delete" @click="onClickDelete"><i class="icon ion-md-trash"></i> hapus</div>
             <div class="todolist__btn-edit" @click="onClickSubmitEdit" v-show="showBtnsubmit"><i class="icon ion-md-done-all"></i>submit</div>
             <div class="todolist__btn-edit" @click="onClickEdit" v-show="showBtnedit"><i class="icon ion-md-create"></i>edit</div>
@@ -117,6 +116,7 @@ export default {
     font-size: 10px;
     margin-bottom: 0;
     padding-left: 1px;
+    color: dodgerblue;
 }
 .ion-md-create {
     margin-right: 3px;
