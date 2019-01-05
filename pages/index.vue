@@ -125,8 +125,8 @@ export default {
       } else {
         task.title = this.updateTask
         this.updateTask = ''
-        this.saveTasks()
         task.editable = false
+        this.saveTasks()
       }
     },
     showFormEdit(task, i) {
