@@ -1,10 +1,12 @@
 # TodoList Project
 
-> My TodoList Project
+> Developed by Faishal Arif. You can see my project on production https://todolist-faishal.herokuapp.com/. 
 
 ## Build Setup
 
 ``` bash
+# Clone this project 
+
 # install dependencies
 $ npm install
 
