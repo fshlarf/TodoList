@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div align="center">
       <div class="dropdown">
         <button class="dropbtn">Filter</button>
             <div class="dropdown-content">
@@ -14,9 +14,6 @@
 <script>
 
 export default {
-    props: {
-
-    },
     methods: {
         onClickAll() {
             this.$emit('onClickAll')
@@ -75,6 +72,23 @@ export default {
 
 .dropdown:hover .dropbtn {
     background-color: #9facb3a5;
+}
+
+@media (max-width: 350px) {
+   .dropbtn {
+        width: 20.5rem;
+    }   
+    .dropdown-content {
+        width: 20.5rem;
+    }
+}
+@media (max-width: 800px) {
+   .dropbtn {
+        width: 20.5rem;
+    }   
+    .dropdown-content {
+        width: 20.5rem;
+    }
 }
 </style>
 

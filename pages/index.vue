@@ -138,5 +138,8 @@ export default {
 }
 .todolist__container-card {
   background-color: #dfe3e6;
+  padding-left: 5px;
+  padding-right: 5px; 
 }
+
 </style>

@@ -1,5 +1,5 @@
 <template>
-    <div align="left" class="card todolist__card-create" style="width: 25rem;">
+    <div align="left" class="card todolist__card-create">
         <h5 class="todolist__card-title">Todo List</h5>
         <div class="todolist__btn-add" :style="hideBtnAdd" @click="showForm">
             <i class="icon ion-md-add-circle-outline"></i>
@@ -94,7 +94,8 @@ export default {
 }
 .todolist__card-create {
     border-color: transparent;
-  background-color: #dfe3e6;
+    background-color: #dfe3e6;
+    width: auto;
 
 }
 .ion-md-add-circle-outline {
@@ -106,4 +107,17 @@ export default {
 .form-control .category {
     background-color: transparent
 }
+@media (max-width: 350px) {
+  
+    .todolist__card-create {
+        width: auto
+    }
+   
+}
+@media (max-width: 800px) {
+    .todolist__card-create {
+        width: auto
+    }
+}
+
 </style>

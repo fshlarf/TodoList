@@ -36,3 +36,16 @@ input[type=text]:focus {
 .mb20 {
     margin-bottom: 20px;
 }
+
+@media (max-width: 350px) {
+    .container {
+        width: 23rem;
+    }
+   
+}
+@media (max-width: 800px) {
+    .container {
+        width: 23rem;
+     
+    }
+}

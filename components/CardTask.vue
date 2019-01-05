@@ -121,5 +121,15 @@ export default {
 .ion-md-create {
     margin-right: 3px;
 }
-
+@media (max-width: 350px) {
+    .todolist__card-list {
+        width: auto
+    }
+   
+}
+@media (max-width: 800px) {
+    .todolist__card-list {
+        width: auto
+    }
+}
 </style>
