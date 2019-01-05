@@ -8,9 +8,10 @@
                 <i class="icon ion-md-checkmark-circle-outline" v-bind:class="status === 'true' ? 'status-done' : ''" :value="status" @click="addStatus"></i>
                 <label class="todolist__label" v-show="status === 'true'"><b><i>Done</i></b></label>
             </div>
-            <div class="todolist__btn-delete" @click="onClickDelete">delete</div>
-            <div class="todolist__btn-edit" @click="onClickSubmitEdit" v-show="showBtnsubmit">submit</div>
-            <div class="todolist__btn-edit" @click="onClickEdit" v-show="showBtnedit">edit</div>
+
+            <div class="todolist__btn-delete" @click="onClickDelete"><i class="icon ion-md-trash"></i> delete</div>
+            <div class="todolist__btn-edit" @click="onClickSubmitEdit" v-show="showBtnsubmit"><i class="icon ion-md-done-all"></i>submit</div>
+            <div class="todolist__btn-edit" @click="onClickEdit" v-show="showBtnedit"><i class="icon ion-md-create"></i>edit</div>
         </div>
     </div>
 </template>
@@ -70,7 +71,7 @@ export default {
 .todolist__btn-edit {
     cursor: pointer;
     float: right;
-    margin-right: 10px;
+    margin-right: 14px;
 }
 .todolist__btn-edit:hover {
     color: dodgerblue;
@@ -116,6 +117,9 @@ export default {
     font-size: 10px;
     margin-bottom: 0;
     padding-left: 1px;
+}
+.ion-md-create {
+    margin-right: 3px;
 }
 
 </style>
