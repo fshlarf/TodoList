@@ -148,8 +148,6 @@ export default {
     },
     dragFinish(to, ev) {
       this.moveItem(this.dragging, to);
-      ev.target.style.marginTop = '2px'
-      ev.target.style.marginBottom = '2px'
       this.saveTasks()
     },
     moveItem(from, to) {
