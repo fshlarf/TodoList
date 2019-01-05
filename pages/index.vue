@@ -7,7 +7,6 @@
         @input="newTask = arguments[0]"
         :category="newCategory"
         @inputCategory="newCategory = arguments[0]"
-
       ></create-task>
       <div :class="{'todolist__container-todolist': isListAvailabled === true}" >
         <drop-down
