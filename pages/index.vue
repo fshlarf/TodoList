@@ -18,12 +18,11 @@
         <div
           class="todolist__task-container"
           align="center" 
-          v-for="(task, i) in tasks" 
+          v-for="(task, i) in tasks.slice().reverse()" 
           :key="i"
           draggable="true" 
           @dragstart="dragStart(i, $event)" 
-          @dragover.prevent @dragenter="dragEnter" 
-          @dragleave="dragLeave" 
+          @dragover.prevent
           @dragend="dragEnd" 
           @drop="dragFinish(i, $event)"
         >
@@ -55,13 +54,6 @@ import CreateTask from '~/components/CreateTask.vue'
 import DropDown from '~/components/DropDown.vue'
 export default {
   loading: false,
-  asyncData() {
-    return new Promise((resolve) => {
-      setTimeout(function () {
-        resolve({})
-      }, 1000)
-    })
-  },
   data() {
     return {
       tasks: [],
@@ -153,21 +145,7 @@ export default {
       ev.dataTransfer.dropEffect = 'move'
       this.dragging = which;
     },
-    dragEnter(ev) {
-      /* 
-      if (ev.clientY > ev.target.height / 2) {
-        ev.target.style.marginBottom = '10px'
-      } else {
-        ev.target.style.marginTop = '10px'
-      }
-      */
-    },
-    dragLeave(ev) {
-      /* 
-      ev.target.style.marginTop = '2px'
-      ev.target.style.marginBottom = '2px'
-      */
-    },
+  
     dragEnd(ev) {
       this.dragging = -1
     },
