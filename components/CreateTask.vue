@@ -14,6 +14,12 @@
                         :value="title"
                         @input="addTitle($event.target.value)"
                     >
+                    <input type="text"
+                        class="form-control category"
+                        placeholder="Tambah category"
+                        :value="category"
+                        @input="addCategory($event.target.value)"
+                    >
                 </div>
                 <input type="submit" class="btn btn-primary" @click.prevent="onClick">
             </form>
@@ -24,7 +30,8 @@
 <script>
 export default {
     props: {
-        title: String
+        title: String,
+        category: String
     },
     data() {
         return {
@@ -46,7 +53,7 @@ export default {
             this.$emit('input', taskTitle)
         },
         onClick() {
-            if(!this.contentTitle === '') {
+            if(!this.taskTitle === '') {
                 return false
             } else {
                 this.$emit('onClick')
@@ -56,6 +63,9 @@ export default {
         },
         addTitle(title) {
             this.$emit('input', title);
+        },
+        addCategory(category) {
+            this.$emit('inputCategory', category)
         }
     }
 }
@@ -92,5 +102,8 @@ export default {
 }
 .todolist__label-create {
     vertical-align: middle
+}
+.form-control .category {
+    background-color: transparent
 }
 </style>

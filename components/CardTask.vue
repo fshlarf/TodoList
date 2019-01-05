@@ -1,10 +1,10 @@
 <template>
     <div align="left" class="card todolist__card-list">
         <div class="card-body todolist__card-list">
-            <h5 class="card-title" >{{ todoTitle }}</h5>
+            <h5 class="card-title" >{{ taskTitle }}</h5>
+            <p class="todolist__category">{{ taskCategory }}</p>
             <input type="text" class="form-control" @input="handleInput" v-model="content" :placeholder="placeHolder" v-show="showForm">
             <div>
-                <!-- <img src="../assets/icon/done-all/1x/done-all.png" alt="icon not found" :value="status" @click="addStatus"> -->
                 <i class="icon ion-md-checkmark-circle-outline" v-bind:class="status === 'true' ? 'status-done' : ''" :value="status" @click="addStatus"></i>
                 <label class="todolist__label" v-show="status === 'true'"><b><i>Done</i></b></label>
             </div>
@@ -18,7 +18,8 @@
 <script>
 export default {
     props: {
-        todoTitle: String,
+        taskTitle: String,
+        taskCategory: String,
         checked: Boolean,
         editTitle: String,
         placeHolder: String,
@@ -31,7 +32,6 @@ export default {
         return {
             value: this.status,
             content: this.editTitle,
-            thePlaceHolder: this.placeHolder
         }
     },
     methods: {
@@ -110,6 +110,12 @@ export default {
     color: green;
     font-size: 26px;
     cursor: pointer;
+}
+.todolist__category {
+    margin-top: -8px;
+    font-size: 10px;
+    margin-bottom: 0;
+    padding-left: 1px;
 }
 
 </style>

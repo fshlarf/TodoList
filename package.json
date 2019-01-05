@@ -16,8 +16,10 @@
     "bootstrap": "^4.1.3",
     "bootstrap-vue": "^2.0.0-beta",
     "cross-env": "^5.2.0",
+    "node-sass": "^4.11.0",
     "nuxt": "^2.0.0",
-    "nuxt-edge": "^2.4.0-25773128.d4554085"
+    "nuxt-edge": "^2.4.0-25773128.d4554085",
+    "sass-loader": "^7.1.0"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"
