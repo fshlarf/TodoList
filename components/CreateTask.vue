@@ -1,6 +1,7 @@
 <template>
     <div align="left" class="card todolist__card-create">
         <h5 class="todolist__card-title">Todo List</h5>
+        <Nuxt-link to="/home">Test Animasi</Nuxt-link>
         <div class="todolist__btn-add" :style="hideBtnAdd" @click="showForm">
             <i class="icon ion-md-add-circle-outline"></i>
             <label class="todolist__label-create">Add Todo List</label>
@@ -10,13 +11,13 @@
                 <div class="form-group">
                     <input type="text"
                         class="form-control"
-                        placeholder="Apa yang kamu kerjakan hari ini..."
+                        placeholder="Apa yang kamu kerjakan"
                         :value="title"
                         @input="addTitle($event.target.value)"
                     >
                     <input type="text"
                         class="form-control category"
-                        placeholder="Tambah category"
+                        placeholder="Tambah category (opsional)"
                         :value="category"
                         @input="addCategory($event.target.value)"
                     >

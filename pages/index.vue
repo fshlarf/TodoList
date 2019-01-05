@@ -92,7 +92,6 @@ export default {
       this.newTask = ''
       this.newCategory = ''
       this.saveTasks()
-      console.log(this.tasks)
     },
     saveTasks () {
       const parsed = JSON.stringify(this.tasksAll)
@@ -113,7 +112,6 @@ export default {
       }
     },
     showFormEdit(task, index) {
-      // this.updateTask = task.title
       task.editable = true
     },
     changeStatus(task, index) {
@@ -126,7 +124,6 @@ export default {
     },
     filterByStatus(tasks, status) {
       this.tasks = status == 'all' ? this.tasksAll : this.tasksAll.filter(e => e.statusTask == status);
-      console.log(tasks)
     }
   }
 }

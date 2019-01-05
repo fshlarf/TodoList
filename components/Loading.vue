@@ -29,11 +29,11 @@ export default {
 <style>
 .loading-page {
     position: absolute;
-    margin-top: 20rem;
     background-color: white;
     width: 100%;
     z-index: 999;
     padding-bottom: 300px;
+    padding-top: 300px;
 }
 
 .load-wrapp {

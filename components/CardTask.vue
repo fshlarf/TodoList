@@ -9,7 +9,7 @@
                 <label class="todolist__label" v-show="status === 'true'"><b><i>Done</i></b></label>
             </div>
 
-            <div class="todolist__btn-delete" @click="onClickDelete"><i class="icon ion-md-trash"></i> delete</div>
+            <div class="todolist__btn-delete" @click="onClickDelete"><i class="icon ion-md-trash"></i> hapus</div>
             <div class="todolist__btn-edit" @click="onClickSubmitEdit" v-show="showBtnsubmit"><i class="icon ion-md-done-all"></i>submit</div>
             <div class="todolist__btn-edit" @click="onClickEdit" v-show="showBtnedit"><i class="icon ion-md-create"></i>edit</div>
         </div>
