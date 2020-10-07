@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container newclass">
     <div class="card todolist__container-card">
       <create-task 
         @onClick="addTodoList"
